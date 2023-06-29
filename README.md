@@ -10,7 +10,7 @@ Here you can see Writeups for Hack the box machines and Solves of CTF's, mostly 
     <th>Link</th>
   </tr>
   <tr>
-    <th>Soccer</th>
+    <th><a href="https://github.com/Wanasgheo/Writeups/tree/main/HackTheBox/Machines/Soccer" target="_BLANK">Soccer</a></th>
     <th>Easy</th>
     <th>10.10.11.194</th>
     <th><a href="https://app.hackthebox.com/machines/519" target="_BLANK"> HTB</th>
