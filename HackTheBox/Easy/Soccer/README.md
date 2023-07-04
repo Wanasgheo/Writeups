@@ -225,7 +225,7 @@ After some tests we see that there are no error messages so we have to exploit i
 
 This is the used [wordlist](https://github.com/payloadbox/sql-injection-payload-list#generic-time-based-sql-injection-payloads) to spot the vuln
 
-```
+```plaintext
 sleep(5)#
 1 or sleep(5)#
 " or sleep(5)#
