@@ -1,2 +1,2 @@
 dentro hard
-![Error](https://miro.medium.com/v2/resize:fit:640/format:webp/1*rD_FSGo5V8U5xds2XLG0zw.png)
+![Soccer](https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2)
