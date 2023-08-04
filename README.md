@@ -1,8 +1,8 @@
 # Writeups
 
-Here you can see Writeups for Hack the box machines and Solves of CTF's, mostly of them based on the PWN category 
+Here you can see Writeups for Hack the box machines and Solves of CTF's, mostly of them based on the PWN category
 
-<table>
+<table align="center">
   <tr>
     <th>Machine</th>
     <th>Difficulty</th>
