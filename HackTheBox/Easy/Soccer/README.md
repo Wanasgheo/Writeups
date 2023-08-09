@@ -1,6 +1,6 @@
 # Soccer
 
-<div align="center" width="50ww">
+<div style=" width : 50vw; ">
     <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" load="lazy"></img>
 </div>
 
