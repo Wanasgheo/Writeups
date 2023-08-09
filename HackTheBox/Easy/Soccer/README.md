@@ -1,7 +1,6 @@
 # Soccer
-
-<div style=" width : 50% ">
-    <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" load="lazy"></img>
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" width="50%" load="lazy"></img>
 </div>
 
 Welcome back today we have an easy machine that has a common vulnerability to exploit in a strange way to become user, where we can learn a lot.
@@ -102,7 +101,9 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 From here we can simply visit the website
 
-![Untitled](https://github.com/Wanasgheo/Writeups/assets/111740362/0043bc97-84e8-4a6e-b25c-6789902cc678)
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/0043bc97-84e8-4a6e-b25c-6789902cc678" width="50%" load="lazy"></img>
+</div>
 
 Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
@@ -116,7 +117,9 @@ Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
 There is the `/tiny` page that we can visit where there is a login form
 
-![Untitled(1)](https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c)
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c" width="50%" load="lazy"></img>
+</div>
 
 By looking at the source code we can find the  used [Framework]( https://github.com/prasathmani/tinyfilemanager) by the site, by looking for it in internet we can spot some defuault credentials that we can try 
 
@@ -535,5 +538,6 @@ By running these commands.
 And we are root so now we can fetch even the `root` flag
 
 We did it!
+
 
 ![Untitled(27)](https://github.com/Wanasgheo/Writeups/assets/111740362/de6902cd-2f32-466f-9963-236d41e7f988)
