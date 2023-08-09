@@ -1,7 +1,7 @@
 # Devel
 
 <p align="center">
-  ![info card](https://github.com/Wanasgheo/Writeups/assets/111740362/2e0d379e-9fee-444d-bdfc-55da6a089247 "machine logo")
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/2e0d379e-9fee-444d-bdfc-55da6a089247" load="lazy" width="600px" height="600px"></img>
 </p>
 
 <div>
