@@ -1,4 +1,4 @@
-# Writeups
+# HTB Writeups
 
 <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/fbce6193-6cfd-4ef8-acde-5c6f9fbcf03d"></img>
 
