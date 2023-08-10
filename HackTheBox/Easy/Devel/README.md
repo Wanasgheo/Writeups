@@ -1,7 +1,7 @@
 # Devel
 
 <p align="center">
-  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/2e0d379e-9fee-444d-bdfc-55da6a089247" load="lazy" width="600px" height="600px"></img>
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/f386dc63-4e14-4568-afd6-faa1720e7732" load="lazy"></img>
 </p>
 
 <div>
