@@ -1,12 +1,13 @@
 # Soccer
-<div align="center">
-	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" width="50%" load="lazy"></img>
-</div>
+
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" load="lazy"></img>
+
 
 Welcome back today we have an easy machine that has a common vulnerability to exploit in a strange way to become user, where we can learn a lot.
 
 So let's start with a usual nmap scan to get started.
 
+	
 ```bash
 # Nmap 7.93 scan initiated Sat Jun 10 10:08:57 2023 as: nmap -sS -sC -sV -oN scans/nmap.txt 10.10.11.194
 Nmap scan report for soccer.htb (10.10.11.194)
@@ -99,11 +100,12 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Sat Jun 10 10:09:20 2023 -- 1 IP address (1 host up) scanned in 22.99 seconds
 ```
 
+
 From here we can simply visit the website
 
-<div align="center">
-	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/0043bc97-84e8-4a6e-b25c-6789902cc678" width="50%" load="lazy"></img>
-</div>
+
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/0043bc97-84e8-4a6e-b25c-6789902cc678" load="lazy"></img>
+
 
 Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
@@ -117,37 +119,44 @@ Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
 There is the `/tiny` page that we can visit where there is a login form
 
-<div align="center">
-	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c" width="50%" load="lazy"></img>
-</div>
+
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/55ae54c3-8edf-4b07-ac25-80367e30004c" load="lazy"></img>
+
 
 By looking at the source code we can find the  used [Framework]( https://github.com/prasathmani/tinyfilemanager) by the site, by looking for it in internet we can spot some defuault credentials that we can try 
 
-![Untitled(2)](https://github.com/Wanasgheo/Writeups/assets/111740362/6d905f4a-bd89-49db-bfee-0de00d1eb019)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/6d905f4a-bd89-49db-bfee-0de00d1eb019" load="lazy"></img>
+
 
 That could be even found by searching the version online which will redirect us to an exploit of a CVE
 
-![Untitled(3)](https://github.com/Wanasgheo/Writeups/assets/111740362/2cb93c48-951b-4486-a03a-153cdcaa2bd8)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/2cb93c48-951b-4486-a03a-153cdcaa2bd8" load="lazy"></img>
+
 
 And if we try to insert them we get the access
 
-![Untitled(4)](https://github.com/Wanasgheo/Writeups/assets/111740362/f872245a-4d3c-42db-bf7f-5135b7fd1290)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/f872245a-4d3c-42db-bf7f-5135b7fd1290" load="lazy"></img>
+
 
 Now we have to find a way to get a foothold, here its kinda easy because we just have to upload a reverse shell and open it with the direct-link
 
-![Untitled(5)](https://github.com/Wanasgheo/Writeups/assets/111740362/d1789e3f-e802-4d3a-8940-222df1dca472)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/d1789e3f-e802-4d3a-8940-222df1dca472" load="lazy"></img>
+
 
 In order to get it we have to change the directory from tiny to uploads where we're allowed to manage files, then we need to listen and open the revshell
 
-![Untitled(6)](https://github.com/Wanasgheo/Writeups/assets/111740362/e038b53f-ae66-41c5-b6e8-4f93747b9819)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/e038b53f-ae66-41c5-b6e8-4f93747b9819" load="lazy"></img>
+
 
 Now we are not allowed to get the user flag, so we got to privesc to `player`
 
-![Untitled(7)](https://github.com/Wanasgheo/Writeups/assets/111740362/c7c62776-46c4-4253-8ed5-72cbe61dbd51)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/c7c62776-46c4-4253-8ed5-72cbe61dbd51" load="lazy"></img>
+
 
 From the error page we see  the webserver's version which is `nginx`
 
-![Untitled(8)](https://github.com/Wanasgheo/Writeups/assets/111740362/45e11fa8-159b-44be-9392-54fc150a11c8)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/45e11fa8-159b-44be-9392-54fc150a11c8" load="lazy"></img>
+
 
 So we can check to the root folder of it or the `/etc/nginx` if we can find some interesting stuffs.
 
@@ -177,15 +186,18 @@ server {
 
 In order to visit the new sub-domain we need to add it next to the one we added before in the `/etc/hosts`.
 
-![Untitled(9)](https://github.com/Wanasgheo/Writeups/assets/111740362/00e932c5-12f7-456b-92d5-07b7189a718b)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/00e932c5-12f7-456b-92d5-07b7189a718b" load="lazy"></img>
+
 
 From there we can see that we are allowed to register and then login.
 
-![Untitled(10)](https://github.com/Wanasgheo/Writeups/assets/111740362/839f2ae1-bab2-4b8b-9415-4783c19a8e66)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/839f2ae1-bab2-4b8b-9415-4783c19a8e66" load="lazy"></img>
+
 
 We get redirected to the tickets page where we can’t do more but we can spot from  the source code that we are on a `websocket`
 
-![Untitled(29)](https://github.com/Wanasgheo/Writeups/assets/111740362/4e04a437-cb5f-4ca6-8f48-5b221c6518e7)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/4e04a437-cb5f-4ca6-8f48-5b221c6518e7" load="lazy"></img>
+
 
 Being in a websocket means that to interact with it we have to create a special code in python that let us to comunicate with it or either use burpsuite with a special request.
 
@@ -223,7 +235,8 @@ asyncio.run(connect_websocket())
 
 Here we created a code in async to make it  faster but it is not necessary, and if we run it here is result that we get via bash
 
-![image](https://github.com/Wanasgheo/Writeups/assets/111740362/9709b459-4761-4465-9c4e-bde99563ceb9)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/9709b459-4761-4465-9c4e-bde99563ceb9" load="lazy"></img>
+
 
 Like this we’ve established a comunication with the ws, and now we can try to check if it is vulnerable to something like the `SQL Injection`.
 After some tests we see that there are no error messages so we have to exploit it with time-based payloads.
@@ -364,7 +377,8 @@ asyncio.run(connect_websocket())
 
 Here is the result
 
-![Untitled(28)](https://github.com/Wanasgheo/Writeups/assets/111740362/b0d372c6-d320-48bd-9f64-e814c2098f2d)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/b0d372c6-d320-48bd-9f64-e814c2098f2d" load="lazy"></img>
+
 
 As you can see with the input `{"id":"sleep(5)"#}` we get the desired delay of 5 second and same for next input or `{"id":"1 or sleep(5)#"}`.
 
@@ -447,7 +461,8 @@ sqlmap -u "http://localhost:8081/?id=*" -p "id" -o --batch --dump --thread 30
 ```
 Here is the result
 
-![Untitled(13)](https://github.com/Wanasgheo/Writeups/assets/111740362/11b755ed-69cf-4634-8bb8-eb8a5864f0b3)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/11b755ed-69cf-4634-8bb8-eb8a5864f0b3" load="lazy"></img>
+
 
 
 Instead we could only use Sqlmap by specifying the argument that we want to pass through the request with the `--data` flag and specifying the cookie we like.
@@ -459,8 +474,8 @@ sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads 50 --
 Here we added:
 
 - `--thread` To specify the number of threads to use, because by default is 1, and the max is 10 so we changed it from the source code to a max o 50
-  
-    ![Untitled(18)](https://github.com/Wanasgheo/Writeups/assets/111740362/517be57d-8bb0-4248-87ef-346cdb2a0420)
+
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/517be57d-8bb0-4248-87ef-346cdb2a0420" load="lazy"></img>
 
 - `--level 5` Or the max level of deepness to make it try all the possible payloads
 - `--risk 3` Even here the max level for more precision
@@ -475,11 +490,13 @@ sqlmap -u "ws://soc-player.soccer.htb:9091" --data '{"id": "*"}' --threads --lev
 
 Here are the creds for the user player.
 
-![Untitled(14)](https://github.com/Wanasgheo/Writeups/assets/111740362/d80e6ef3-99bb-4762-a5ac-f2baf79e9e78)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/d80e6ef3-99bb-4762-a5ac-f2baf79e9e78" load="lazy"></img>
+
 
 It turned out that password is the one of the `ssh` connection.
 
-![Untitled(15)](https://github.com/Wanasgheo/Writeups/assets/111740362/b4152400-610b-4afb-b28a-170d2340dda4)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/b4152400-610b-4afb-b28a-170d2340dda4" load="lazy"></img>
+
 
 Now we can finally fetch the `user.txt` flag
 
@@ -487,27 +504,32 @@ Now we can finally fetch the `user.txt` flag
 
 After the user we have to escalate to root, for this reason we got to fetch `linpeas.sh`, via python3 web-server
 
-![Untitled(16)](https://github.com/Wanasgheo/Writeups/assets/111740362/cae066e9-9441-4b5a-86b0-29ba9f62d99c)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/cae066e9-9441-4b5a-86b0-29ba9f62d99c" load="lazy"></img>
+
 
 By running it we can see that there is a strange command that we can run with the `SUID` bit set, or `doas`
 
-![Untitled(17)](https://github.com/Wanasgheo/Writeups/assets/111740362/dd58ce76-dd56-4b9a-bdf8-dc6bd52302fd)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/dd58ce76-dd56-4b9a-bdf8-dc6bd52302fd" load="lazy"></img>
+
 
 As you can see it is not highlited by linpeas but it can be used to become root, because in it are stored the command that some users can run without password as other users
 
 By looking at the `doas.conf` file we can see this specifications
 
-![Untitled(19)](https://github.com/Wanasgheo/Writeups/assets/111740362/e21a39c3-138e-4d9d-8a5c-791639fad027)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/e21a39c3-138e-4d9d-8a5c-791639fad027" load="lazy"></img>
+
 
 Here we can see that we’re allowed to run the command `/usr/bin/dstat` as root without any password which, even this, is a command that can lead to a shell if we can run it as sudo. Basically it is used to see an overview of systems in real-time.
 
 So to get the root instead of using `sudo` we will use `doas` which does the same work as it; so by looking at this [link](https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/sudo/sudo-dstat-privilege-escalation/) or even [gtfobins](https://gtfobins.github.io/gtfobins/dstat/#shell), we can simply add the `s` bit to a command to become root.
 
-![Untitled(20)](https://github.com/Wanasgheo/Writeups/assets/111740362/22249f38-3110-4f1e-b0d9-b57cc38d482c)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/22249f38-3110-4f1e-b0d9-b57cc38d482c" load="lazy"></img>
+
 
 The idea is simple we got to create a new plugin that we can insert in the `/usr/local/share/dstat` folder, where the command fetch the python files, as you can see below.
 
-![Untitled(21)](https://github.com/Wanasgheo/Writeups/assets/111740362/54f0c075-6ebd-4f19-8537-d9e76cb5e64a)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/54f0c075-6ebd-4f19-8537-d9e76cb5e64a" load="lazy"></img>
+
 
 So we simply have to create a python script that add the `s` bit to a command and then run it with doas
 
@@ -517,27 +539,33 @@ echo 'import os; os.system("chmod +s /usr/bin/wget")' > /usr/local/share/dstat/d
 
 To check if it worked we can use the command `dstat --list`
 
-![Untitled(22)](https://github.com/Wanasgheo/Writeups/assets/111740362/773fe794-86eb-44ca-b3d9-530b5ba3577d)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/773fe794-86eb-44ca-b3d9-530b5ba3577d" load="lazy"></img>
+
 
 The plugin got added so now we can run it as `root` with `doas`
 
-![Untitled(23)](https://github.com/Wanasgheo/Writeups/assets/111740362/33c4987b-0598-431d-97bb-9dd82b81cbcc)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/33c4987b-0598-431d-97bb-9dd82b81cbcc" load="lazy"></img>
+
 
 Don’t worry about the error it worked anyway, as you can see  by checking the permission of `wget`
 
-![Untitled(24)](https://github.com/Wanasgheo/Writeups/assets/111740362/22c9b103-14cc-4bd9-b716-0e43cbcd04b4)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/22c9b103-14cc-4bd9-b716-0e43cbcd04b4" load="lazy"></img>
+
 
 So now we just have to follow the instruction of `[gtfobins](https://gtfobins.github.io/gtfobins/wget/#sudo)` to become root with `wget`.
 
-![Untitled(25)](https://github.com/Wanasgheo/Writeups/assets/111740362/e341c10c-d3f8-4f44-b5fd-b57d075a14e7)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/e341c10c-d3f8-4f44-b5fd-b57d075a14e7" load="lazy"></img>
+
 
 By running these commands.
 
-![Untitled(26)](https://github.com/Wanasgheo/Writeups/assets/111740362/c403ed64-b43b-44a0-a32a-21dc950d7773)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/c403ed64-b43b-44a0-a32a-21dc950d7773" load="lazy"></img>
+
 
 And we are root so now we can fetch even the `root` flag
 
 We did it!
 
 
-![Untitled(27)](https://github.com/Wanasgheo/Writeups/assets/111740362/de6902cd-2f32-466f-9963-236d41e7f988)
+<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/de6902cd-2f32-466f-9963-236d41e7f988" load="lazy"></img>
+
