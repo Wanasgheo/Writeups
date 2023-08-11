@@ -7,7 +7,7 @@ Welcome back today we have an easy machine that has a common vulnerability to ex
 
 So let's start with a usual nmap scan to get started.
 
-<div>
+
 	
 ```bash
 # Nmap 7.93 scan initiated Sat Jun 10 10:08:57 2023 as: nmap -sS -sC -sV -oN scans/nmap.txt 10.10.11.194
@@ -100,7 +100,6 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Sat Jun 10 10:09:20 2023 -- 1 IP address (1 host up) scanned in 22.99 seconds
 ```
-</div>
 
 From here we can simply visit the website
 
