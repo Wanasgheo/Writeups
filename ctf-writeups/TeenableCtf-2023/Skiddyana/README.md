@@ -138,9 +138,7 @@ Here is the function that let us to leak the password and even the libc used in 
 
 ```c
 
-void fatesRoom(char *param_1)
-
-{
+void fatesRoom(char *param_1) {
   undefined8 local_98;
   undefined8 local_90;
   undefined8 local_88;
