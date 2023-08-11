@@ -3,7 +3,7 @@
 Hello, here is an unintended solution for the Skiddyana challenge which was supposed to be a tipical ret2win, but i didn't see that function so i did a complete exploit
 So started by running checksec
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0128f654-3ec5-4a80-8adb-b25148525915/Untitled.png)
+![immagine](https://github.com/Wanasgheo/Writeups/assets/111740362/45db0a5c-2670-400d-b6d5-0d834f32553b)
 
 We can see that we are not allowed to run shellcode, but there is no PIE which we will see later that's pretty good.
 After this we can take a look at the code with ghidra
