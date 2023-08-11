@@ -5,6 +5,7 @@ Hello, here is an unintended solution for the Skiddyana challenge which was supp
 <div align="center">
 	<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/45db0a5c-2670-400d-b6d5-0d834f32553b"></img>
 </div>
+
 We can see that we are not allowed to run shellcode, but there is no PIE which we will see later that's pretty good.
 After this we can take a look at the code with ghidra
 
