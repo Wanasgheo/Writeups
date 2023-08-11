@@ -1,8 +1,16 @@
+# CTF-Writeups
+Here you will find Solves of CTF's, mostly of them based on the PWN category
+- TeenableCTF 2023
+    
+    [Skiddyana](https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/TeenableCtf-2023/Skiddyana/README.md)
+
 # HTB Writeups
+Below you can see writeups of the Hackthebox machines
 
-<img src="https://github.com/Wanasgheo/Writeups/assets/111740362/fbce6193-6cfd-4ef8-acde-5c6f9fbcf03d"></img>
 
-Here you can see Writeups for Hack the box machines and Solves of CTF's, mostly of them based on the PWN category
+<div align="center">
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/fbce6193-6cfd-4ef8-acde-5c6f9fbcf03d"></img>
+</div>
 
 <table align="center">
   <tr>
