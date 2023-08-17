@@ -1,7 +1,7 @@
 # Soccer
 
 <Image src="https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2" load="lazy"/>
-![Alt text](https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2 "a title")
+![Alt text](https://github.com/Wanasgheo/Writeups/assets/111740362/18fff389-6af8-416b-9414-66638fb192b2)
 
 Welcome back today we have an easy machine that has a common vulnerability to exploit in a strange way to become user, where we can learn a lot.
 
