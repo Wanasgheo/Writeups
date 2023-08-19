@@ -1,1 +1,6 @@
-https://www.hackthebox.com/storage/avatars/b08c77f48a671ddc1947d8570b75f6e6.png
+{	"link":"https://www.hackthebox.com/storage/avatars/b08c77f48a671ddc1947d8570b75f6e6.png",
+	"os":"windows",
+	"difficulty":"easy",
+	"release":2017,
+	"state":"retired"
+}
