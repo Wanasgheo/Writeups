@@ -1,7 +1,1 @@
-{       "link":"https://lisandre.com/wp-content/uploads/htb_soccer.png",
-        "os":"linux",
-        "difficulty":"easy",
-        "release":2022,
-        "state":"retired"
-}
-
+{"link":"https://lisandre.com/wp-content/uploads/htb_soccer.png","os":"linux","difficulty":"easy","release":2022,"state":"retired"}

@@ -1,6 +1,1 @@
-{	"link":"https://www.hackthebox.com/storage/avatars/0fb6455a29eb4f2682f04a780ce26cb1.png",
-	"os":"windows",
-	"difficulty":"easy",
-	"release":2017,
-	"state":"retired"
-}
+{"link":"https://www.hackthebox.com/storage/avatars/0fb6455a29eb4f2682f04a780ce26cb1.png","os":"windows","difficulty":"easy","release":2017,"state":"retired"}
