@@ -1,1 +1,1 @@
-https://www.hackthebox.com/storage/avatars/93c53cc1fc0284e5d9d74a565a8b9bf0.png
+{"link":"https://www.hackthebox.com/storage/avatars/93c53cc1fc0284e5d9d74a565a8b9bf0.png","os":"linux","difficulty":"medium","release":2023,"state":"active"}
