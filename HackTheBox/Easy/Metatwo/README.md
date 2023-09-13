@@ -948,8 +948,8 @@ root@meta2:/home/jnelson# cat ~/root.txt
 263bd93b8b6ed9f4479f267d14cc2612
 ```
 
-That’s all solved it!
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6cab7fe2-f604-4835-941c-c735d0022d72/Untitled.png)
-
+That’s all folks!
+<div align="center">
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/2b3c1c94-1c16-48b5-8442-455435e355da"></img>
+</div>
 Ty for your attention 0xCY@
