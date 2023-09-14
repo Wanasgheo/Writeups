@@ -239,7 +239,7 @@ Here are the used tags :
 ```bash
 ...
 [+] Enumerating Vulnerable Plugins (via Aggressive Methods)
- Checking Known Locations - Time: 00:02:13 <==========================================================================================================================================================> (4989 / 4989) 100.00% Time: 00:02:13
+ Checking Known Locations - Time: 00:02:13
 [+] Checking Plugin Versions (via Passive and Aggressive Methods)
 
 [i] Plugin(s) Identified:
