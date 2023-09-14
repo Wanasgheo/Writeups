@@ -32,6 +32,12 @@ Below you can see writeups of the Hackthebox machines
     <th><a href="https://app.hackthebox.com/machines/3" target="_BLANK"> HTB</th>
   </tr>
   <tr>
+    <th><a href="https://github.com/Wanasgheo/Writeups/tree/main/HackTheBox/Easy/Metatwo" target="_BLANK">Metatwo</a></th>
+    <th>Easy</th>
+    <th>10.10.11.186</th>
+    <th><a href="https://app.hackthebox.com/machines/504" target="_BLANK"> HTB</th>
+  </tr>
+  <tr>
     <th><a href="https://github.com/Wanasgheo/Writeups/tree/main/HackTheBox/Easy/Photobomb" target="_BLANK">Photobomb</a></th>
     <th>Easy</th>
     <th>10.10.11.182</th>
