@@ -1,0 +1,1 @@
+{"link":"https://www.hackthebox.com/storage/avatars/0fb6455a29eb4f2682f04a780ce26cb1.png","os":"linux","difficulty":"easy","release":2022,"state":"retired"}
