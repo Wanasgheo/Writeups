@@ -1,1 +1,1 @@
-{"link":"https://portswigger.net/cms/images/8f/02/d673-article-211224-capture-the-flag-body-text.png", "description" : "This is a easy challenge, that i solved with an uninteded solution, or forgetting the win function..."}
+{"link":"https://portswigger.net/cms/images/8f/02/d673-article-211224-capture-the-flag-body-text.png", "description" : "TThis is a easy challenge, that i solved with an uninteded solution, or forgetting the win function..."}
