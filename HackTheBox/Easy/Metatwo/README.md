@@ -5,7 +5,7 @@
 
 Welcome back into another easy machine, where we will face a website built in wordpress and an interesting way of getting foothold, so let's dive in with the nmap scan!
 
-```
+```diff
 ┌──(kali㉿kali)-[~/diego/Hack_the_box/Machines/Metatwo]
 └─$ cat meta.txt 
 # Nmap 7.92 scan initiated Mon Nov 28 13:26:42 2022 as: nmap -sC -sV -oN meta.txt 10.10.11.186
