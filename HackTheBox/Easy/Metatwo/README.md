@@ -890,7 +890,7 @@ Having this privatekeys we can try to decrypt them and get  the message encrypte
 
 Let’s first use gpg2john to get the hash from the private key
 
-```
+```diff
 ┌──(kali㉿kali)-[~/diego/Hack_the_box/Machines/Metatwo]
 └─$ gpg2john private-key.asc > hash
 
