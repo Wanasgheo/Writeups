@@ -396,7 +396,7 @@ Table: wp_users
 
 Here are hashes that we can decrypt with johnipper
 
-```
+```diff
 ┌──(kali㉿kali)-[~/diego/Hack_the_box/Machines/Metatwo]
 └─$ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt 1 ⨯
 Using default input encoding: UTF-8
