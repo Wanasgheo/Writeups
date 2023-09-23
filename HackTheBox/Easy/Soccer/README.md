@@ -109,7 +109,7 @@ From here we can simply visit the website
 
 Nothing cool here, so we can try to run gobuster to spot some hidden folders
 
-```
+```diff
 ┌──(kali㉿kali)-[~/diego/Hack_the_box/Machines/Soccer]
 └─$ cat scans/gbusterSecCommon.txt 
 /.htaccess            (Status: 403) [Size: 162]
