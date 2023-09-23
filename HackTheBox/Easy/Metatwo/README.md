@@ -398,7 +398,7 @@ Here are hashes that we can decrypt with johnipper
 
 ```
 ┌──(kali㉿kali)-[~/diego/Hack_the_box/Machines/Metatwo]
-└─$ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt                                                  1 ⨯
+└─$ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt 1 ⨯
 Using default input encoding: UTF-8
 Loaded 1 password hash (phpass [phpass ($P$ or $H$) 128/128 SSE2 4x3])
 Cost 1 (iteration count) is 8192 for all loaded hashes
