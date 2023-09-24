@@ -1,6 +1,6 @@
 # Devel
 <div align="center">
-  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/f386dc63-4e14-4568-afd6-faa1720e7732" load="lazy"></img>
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/f386dc63-4e14-4568-afd6-faa1720e7732"></img>
 </div>
 
 
