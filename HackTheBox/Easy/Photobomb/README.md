@@ -1,6 +1,6 @@
 # Photobomb
 <div align="center">
-  <img style="text-align:center" src="https://github.com/Wanasgheo/Writeups/assets/111740362/8775d37c-91c2-43fb-bddd-36da3cca479d"></img>
+  <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/8775d37c-91c2-43fb-bddd-36da3cca479d"></img>
 </div>
 
 Welecome back, today  we will see an hackthebox machine called Photobomb
