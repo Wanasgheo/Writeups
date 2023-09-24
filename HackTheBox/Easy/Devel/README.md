@@ -1,7 +1,7 @@
 # Devel
-
+<div align="center">
   <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/f386dc63-4e14-4568-afd6-faa1720e7732" load="lazy"></img>
-
+</div>
 
 
   Welcome back, here we have a very old HacktheBox easy machine, that for this reason is really simple, but let’s start as usual, by running `nmap`
