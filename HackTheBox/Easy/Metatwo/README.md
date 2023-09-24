@@ -1,4 +1,4 @@
-<h1 style="margin-bottom:20px;text-align:center">Metatwo</h1>
+<h1 style="margin-bottom:20px;text-align:center;">Metatwo</h1>
 
 <div align="center">
   <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/eb3c48dd-3bf8-4fb6-a408-0a82ec654b44"></img> 
