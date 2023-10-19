@@ -1,8 +1,17 @@
 # CTF-Writeups
 Here you will find Solves of CTF's, mostly of them based on the PWN category
-- TeenableCTF 2023
-    
-    [Skiddyana](https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/TeenableCtf-2023/Skiddyana/README.md)
+
+<h3>TeenableCTF 2023</h3>
+<ul>
+    <li><a href="https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/TeenableCtf-2023/Skiddyana/README.md">Skiddyana</a></li>
+</ul>
+
+<h3>SunshineCTF 2023</h3>
+<ul>
+    <li><a href="https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/SunshineCTF-2023/Sunshine-array/README.md">Sunshine-Array</a></li>
+    <li><a href="https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/SunshineCTF-2023/Flock/README.md">Flock</a></li>
+    <li><a href="https://github.com/Wanasgheo/Writeups/blob/main/ctf-writeups/SunshineCTF-2023/House_of_sus/README.md">House of Sus</a></li>
+</ul>
 
 # HTB Writeups
 Below you can see writeups of the Hackthebox machines
