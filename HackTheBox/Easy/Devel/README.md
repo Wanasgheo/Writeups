@@ -117,7 +117,7 @@
   type \Users\administrator\Desktop\root.txt
   6XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX5
   ```
-  Just like this we solved the machine
+  Just like this we solved the machine 0xCY@
 
   <img src="https://github.com/Wanasgheo/Writeups/assets/111740362/9adc4f54-8bd3-41dd-bde1-311c173dde88" load="lazy"></img>
 
