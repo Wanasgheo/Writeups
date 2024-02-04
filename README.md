@@ -51,11 +51,17 @@ Below you can see writeups of the Hackthebox machines
         <th>Easy</th>
         <th>10.10.11.182</th>
         <th><a href="https://app.hackthebox.com/machines/500" target="_BLANK"> HTB</th>
-        </tr>  
+    </tr>
+        <tr>
+        <th><a href="https://github.com/Wanasgheo/Writeups/blob/main/HackTheBox/Easy/Shoppy" target="_BLANK">Shoppy</a></th>
+        <th>Easy</th>
+        <th>10.10.11.180</th>
+        <th><a href="https://app.hackthebox.com/machines/496" target="_BLANK"> HTB</th>
+    </tr> 
     <tr>
         <th><a href="https://github.com/Wanasgheo/Writeups/blob/main/HackTheBox/Medium/Sandworm" target="_BLANK">Sandworm</a></th>
         <th>Medium</th>
         <th>10.129.32.96</th>
         <th><a href="https://app.hackthebox.com/machines/548" target="_BLANK"> HTB</th>
-    </tr> 
+    </tr>  
 </table>
