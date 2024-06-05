@@ -1,1 +1,1 @@
-{"link":"https://www.hackthebox.com/storage/avatars/a30c60e20eb764fd28e72c60be5fa693.png","os":"linux","difficulty":"easy","release":2022,"state":"retired"}
+{"link":"https://www.hackthebox.com/storage/avatars/a30c60e20eb764fd28e72c60be5fa693.png","os":"linux","difficulty":"easy","release":2022,"state":"retired","description":"Shoppy is an easy-level Linux machine that features a website with a login panel and a user search functionality."}
